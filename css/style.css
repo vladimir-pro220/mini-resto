@@ -1,0 +1,283 @@
+/* =====================================================================
+   Chez Ngono : thème « restaurant sobre et élégant »
+   (inspiré de l'ambiance du site Bella Storia : fond sombre, accent rouge,
+   titres en capitales espacées, bannière plein écran, cartes soignées)
+   Le HTML et le JavaScript des TP ne sont pas modifiés.
+   ===================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&display=swap");
+
+:root {
+  --fond: #121212;
+  --fond-2: #1c1c1c;
+  --fond-3: #262626;
+  --texte: #eae6df;
+  --texte-doux: #b9b3a8;
+  --rouge: #b3202a;
+  --rouge-clair: #d9404a;
+  --or: #c9a96e;
+  --bordure: #3a3a3a;
+}
+
+/* ---------- Réglages généraux ---------- */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Lato", "Segoe UI", Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--texte);
+  background: var(--fond);
+}
+h1, h2, h3 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  color: #ffffff;
+  line-height: 1.2;
+  font-weight: 500;
+}
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 1.5rem;
+  margin: 2.5rem 0 2rem;
+}
+/* petite « volute » rouge sous chaque titre de section */
+h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 0.8rem auto 0;
+  background: var(--rouge);
+  border-radius: 2px;
+}
+h3 { font-size: 1.2rem; margin: 0.8rem 0 0.2rem; }
+a { color: var(--or); }
+img { max-width: 100%; height: auto; display: block; }
+main { max-width: 70rem; margin: 0 auto; padding: 1rem; }
+main > h1 { text-align: center; margin: 2rem 0 0; font-size: 2rem; }
+
+/* ---------- En-tête et menu ---------- */
+header {
+  background: rgba(0, 0, 0, 0.88);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid var(--rouge);
+}
+.logo {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.5rem; }
+nav a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  font-weight: 400;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+nav a:hover { color: var(--or); border-bottom-color: var(--rouge); }
+
+/* ---------- Bannière et bouton ---------- */
+.banniere {
+  text-align: center;
+  padding: 6rem 1rem;
+  margin: 0 -1rem;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.78)),
+    url("../images/poulet-dg.jpg") center / cover no-repeat,
+    var(--fond-2);
+}
+.banniere h1 {
+  color: white;
+  font-size: 2.2rem;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem;
+}
+.banniere p { max-width: 38rem; margin: 0 auto 1.8rem; font-size: 1.1rem; color: var(--texte); }
+.bouton {
+  display: inline-block;
+  background: var(--rouge);
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border: 1px solid var(--rouge);
+  border-radius: 2px;
+  font: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.bouton:hover { background: transparent; color: var(--rouge-clair); }
+
+/* ---------- Cartes des plats ---------- */
+.liste-plats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.carte-plat {
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  border-radius: 2px;
+  padding: 0;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.carte-plat:hover { transform: translateY(-6px); border-color: var(--rouge); }
+.carte-plat img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.carte-plat h3, .carte-plat .prix { padding: 0 1rem; }
+.prix {
+  color: var(--or);
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  margin: 0 0 1.2rem;
+}
+
+/* ---------- Tableau ---------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: var(--fond-2);
+  color: var(--texte);
+}
+caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0 0 0.5rem;
+  color: var(--texte-doux);
+  font-style: italic;
+}
+th, td { border: 1px solid var(--bordure); padding: 0.7rem; text-align: left; }
+th {
+  background: var(--rouge);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+}
+
+/* ---------- Pied de page ---------- */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #000;
+  color: var(--texte-doux);
+  border-top: 2px solid var(--rouge);
+  margin-top: 3rem;
+}
+footer p { margin: 0.3rem 0; }
+footer a { color: var(--or); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ---------- Formulaire, filtres, liste du menu ---------- */
+form {
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  padding: 1.5rem;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  color: var(--texte-doux);
+}
+input, select, textarea {
+  font: inherit;
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  color: var(--texte);
+  background: var(--fond-3);
+  border: 1px solid var(--bordure);
+  border-radius: 2px;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--rouge-clair);
+}
+#erreur {
+  color: var(--rouge-clair);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
+.filtre {
+  font: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  padding: 0.5rem 1.1rem;
+  margin: 0 0.3rem 0.6rem 0;
+  border: 1px solid var(--or);
+  background: transparent;
+  color: var(--or);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.filtre:hover { background: var(--rouge); border-color: var(--rouge); color: white; }
+#liste-menu { list-style: none; margin: 1rem 0; padding: 0; }
+#liste-menu li {
+  padding: 0.8rem 0;
+  border-bottom: 1px dotted var(--bordure);
+  font-size: 1.1rem;
+}
+
+/* ===== TP 4 : version mobile d'abord (placée à la fin : la cascade l'emporte) ===== */
+/* Téléphone : valeurs par défaut */
+.liste-plats { grid-template-columns: 1fr; }
+#bouton-menu {
+  background: none; border: none; color: white;
+  font-size: 1.8rem; cursor: pointer;
+}
+nav { width: 100%; display: none; }          /* menu replié par défaut */
+nav.ouvert { display: block; }               /* ouvert par JavaScript (TP 5) */
+nav ul { flex-direction: column; gap: 0.5rem; padding-top: 0.5rem; }
+nav a { display: block; padding: 0.6rem 0; border-bottom: none; }  /* grande zone à toucher */
+.banniere { padding: 4rem 1rem; }
+
+/* Tablette : à partir de 768 px */
+@media (min-width: 768px) {
+  .liste-plats { grid-template-columns: repeat(2, 1fr); }
+  #bouton-menu { display: none; }
+  nav { display: block; width: auto; }
+  nav ul { flex-direction: row; gap: 1.8rem; padding-top: 0; }
+  nav a { display: inline-block; padding: 0.3rem 0; border-bottom: 2px solid transparent; }
+  nav a:hover { border-bottom-color: var(--rouge); }
+  .banniere { padding: 6rem 1rem; }
+}
+
+/* Ordinateur : à partir de 992 px */
+@media (min-width: 992px) {
+  .liste-plats { grid-template-columns: repeat(3, 1fr); }
+  .banniere h1 { font-size: 3rem; }
+}
+
+/* Impression */
+@media print {
+  nav, #bouton-menu, .bouton { display: none; }
+  body { background: white; color: black; }
+  header, footer { background: white; color: black; border-color: black; }
+  h1, h2, h3, .logo { color: black; }
+}

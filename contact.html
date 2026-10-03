@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Réservez une table chez Chez Ngono à Akwa, Douala.">
+<title>Contact et réservation : Chez Ngono</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/script.js" defer></script>
+</head>
+<body>
+<header>
+<p class="logo">Chez Ngono</p>
+<button id="bouton-menu" aria-label="Ouvrir le menu">&#9776;</button>
+<nav>
+<ul>
+<li><a href="index.html">Accueil</a></li>
+<li><a href="menu.html">Menu</a></li>
+<li><a href="contact.html">Contact et réservation</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<h1>Contact et réservation</h1>
+<section>
+<h2>Réserver une table</h2>
+<form id="form-reservation" method="post">
+<p><label for="nom">Nom</label><br>
+<input id="nom" name="nom" type="text" required></p>
+<p><label for="telephone">Téléphone</label><br>
+<input id="telephone" name="telephone" type="tel" required></p>
+<p><label for="date">Date</label><br>
+<input id="date" name="date" type="date" required></p>
+<p><label for="personnes">Nombre de personnes</label><br>
+<input id="personnes" name="personnes" type="number" min="1" max="20" value="2" required></p>
+<p><label for="service">Service</label><br>
+<select id="service" name="service">
+<option value="midi">Midi</option>
+<option value="soir">Soir</option>
+</select></p>
+<p><label for="remarques">Remarques</label><br>
+<textarea id="remarques" name="remarques" rows="4"></textarea></p>
+<button type="submit" class="bouton">Réserver</button>
+</form>
+<p id="erreur"></p>
+</section>
+</main>
+<footer>
+<p>Chez Ngono, rue Joss, Akwa, Douala</p>
+<p><a href="tel:+237690000000">690 00 00 00</a> · <a href="mailto:contact@chezngono.cm">contact@chezngono.cm</a></p>
+</footer>
+</body>
+</html>
